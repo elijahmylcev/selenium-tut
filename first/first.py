@@ -7,7 +7,12 @@ driver = webdriver.Chrome(executable_path=executable_path)
 
 try:
     driver.get(url=url)
+    driver.save_screenshot('1.png')
+
     time.sleep(3)
+
+    # Полезно для разгадывания капчи
+    # driver.refresh()
 except Exception as e:
     print(e)
 finally:
