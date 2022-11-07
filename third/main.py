@@ -3,11 +3,12 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from config import executable_path, url
 from fake_useragent import UserAgent
+from create_file_layout import create_html
 import random
 import time
 
 useragent = UserAgent()
-receiving = 1000
+receiving = 10000
 
 options = webdriver.ChromeOptions()
 options.add_argument(f"user-agent={useragent.random}")
@@ -37,15 +38,20 @@ try:
     time.sleep(2)
     #CheckBox_checkbox-input___BTr3
     driver.find_element(By.CLASS_NAME, 'CheckBox_checkbox-input___BTr3').click()
-    time.sleep(2)
+    time.sleep(5)
 
-    to_pay = driver.find_element(By.CLASS_NAME, 'static-text-calculatorAmount')
+    to_pay_in_html = driver.find_element(By.ID, 'static-text-calculatorAmount').text
+    words_list = to_pay_in_html.split()
+    print(words_list)
+    for num in words_list:
+        number = num.replace(",", "")
+        if number.isnumeric():
+            to_pay = float(number)
+            print(to_pay)
 
-    print(to_pay.text)
+            
+    # create_html(driver.page_source)
 
-    with open('ind.html', 'w') as f:
-        f.write(web_page_source)
-    #
     time.sleep(3)
 
 
