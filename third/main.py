@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from config import executable_path, url
 from fake_useragent import UserAgent
 from create_file_layout import create_html
+from out_float import out_float
 import random
 import time
 
@@ -42,11 +43,12 @@ try:
 
     to_pay_in_html = driver.find_element(By.ID, 'static-text-calculatorAmount').text
 
-
+    to_pay = out_float(to_pay_in_html)
     # create_html(driver.page_source)
 
-    time.sleep(3)
-
+    currency_KZT = receiving / to_pay
+    currency_KZT = round(currency_KZT, 2)
+    print(f'Курс ₸: {currency_KZT}')
 
 except Exception as e:
     print(e)
