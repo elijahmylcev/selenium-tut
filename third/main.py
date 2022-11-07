@@ -41,15 +41,8 @@ try:
     time.sleep(5)
 
     to_pay_in_html = driver.find_element(By.ID, 'static-text-calculatorAmount').text
-    words_list = to_pay_in_html.split()
-    print(words_list)
-    for num in words_list:
-        number = num.replace(",", "")
-        if number.isnumeric():
-            to_pay = float(number)
-            print(to_pay)
 
-            
+
     # create_html(driver.page_source)
 
     time.sleep(3)
