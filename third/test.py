@@ -1,9 +1,3 @@
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
 
 to_pay_in_html = '1,465.00 RUB'
 words_list = to_pay_in_html.split()
